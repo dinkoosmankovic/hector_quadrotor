@@ -2,6 +2,6 @@
 
 <robot name="octorotor" xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:include filename="$(find hector_octorotor_description)/urdf/octorotor.urdf.xacro" />
-    <xacro:include filename="$(find hector_quadrotor_gazebo)/urdf/quadrotor_plugins.gazebo.xacro" />
+    <xacro:include filename="$(find hector_octorotor_gazebo)/urdf/octorotor_plugins.gazebo.xacro" />
 </robot>
 
