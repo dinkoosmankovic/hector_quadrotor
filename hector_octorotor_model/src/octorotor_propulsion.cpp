@@ -37,8 +37,8 @@
 #include "matlab_helpers.h"
 
 //extern "C" {
-//  #include "quadrotorPropulsion/quadrotorPropulsion.h"
-//  #include "quadrotorPropulsion/quadrotorPropulsion_initialize.h"
+//  #include "octorotorPropulsion/octorotorPropulsion.h"
+//  #include "octorotorPropulsion/octorotorPropulsion_initialize.h"
 //}
 
 namespace hector_octorotor_model {
@@ -218,18 +218,18 @@ void octorotorPropulsion(const real_T xin[8], const real_T uin[14], const
     F[2] += b_F_m;
   }
 
-  /*  System output, i.e. force and torque of quadrotor */
+  /*  System output, i.e. force and torque of octorotor */
   y[0] = 0.0;
   y[1] = 0.0;
   y[2] = F[2];
 
-  /*  torque for rotating quadrocopter around x-axis is the mechanical torque */
+  /*  torque for rotating octorocopter around x-axis is the mechanical torque */
   y[3] = (F_m[0] - F_m[5] + F_m[3] - F_m[6]) * parameter.l_m;
 
-  /*  torque for rotating quadrocopter around y-axis is the mechanical torque */
+  /*  torque for rotating octorocopter around y-axis is the mechanical torque */
   y[4] = (F_m[1] - F_m[5] + F_m[3] - F_m[7]) * parameter.l_m;
 
-  /*  torque for rotating quadrocopter around z-axis is the electrical torque */
+  /*  torque for rotating octorocopter around z-axis is the electrical torque */
   y[5] = (-M_e[0]+M_e[1]-M_e[2]+M_e[3]-M_e[4]+M_e[5]-M_e[6]+M_e[7]);
 
   /*  motor speeds (rad/s) */
@@ -245,14 +245,14 @@ void octorotorPropulsion(const real_T xin[8], const real_T uin[14], const
   /*  M_e(1:8) / Psi; */
 }
 
-/* End of code generation (quadrotorPropulsion.c) */
+/* End of code generation (octorotorPropulsion.c) */
 
-inline void QuadrotorPropulsion::f(const double xin[4], const double uin[10], double dt, double y[14], double xpred[4]) const
+inline void OctorotorPropulsion::f(const double xin[4], const double uin[10], double dt, double y[14], double xpred[4]) const
 {
-  quadrotorPropulsion(xin, uin, propulsion_model_->parameters_, dt, y, xpred);
+  octorotorPropulsion(xin, uin, propulsion_model_->parameters_, dt, y, xpred);
 }
 
-bool QuadrotorPropulsion::configure(const ros::NodeHandle &param)
+bool OctorotorPropulsion::configure(const ros::NodeHandle &param)
 {
   // get model parameters
   if (!param.getParam("k_m",     propulsion_model_->parameters_.k_m)) return false;
@@ -268,7 +268,7 @@ bool QuadrotorPropulsion::configure(const ros::NodeHandle &param)
   if (!param.getParam("beta_m",  propulsion_model_->parameters_.beta_m)) return false;
 
 #ifndef NDEBUG
-  std::cout << "Loaded the following quadrotor propulsion model parameters from namespace " << param.getNamespace() << ":" << std::endl;
+  std::cout << "Loaded the following octorotor propulsion model parameters from namespace " << param.getNamespace() << ":" << std::endl;
   std::cout << "k_m     = " << propulsion_model_->parameters_.k_m << std::endl;
   std::cout << "k_t     = " << propulsion_model_->parameters_.k_t << std::endl;
   std::cout << "CT2s    = " << propulsion_model_->parameters_.CT2s << std::endl;

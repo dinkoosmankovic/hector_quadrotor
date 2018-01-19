@@ -1,0 +1,29 @@
+<package>
+  <name>hector_octorotor_demo</name>
+  <version>0.3.5</version>
+  <description>hector_octorotor_demo contains various launch files and needed dependencies for demonstration of the hector_octootor stack (indoor/outdoor flight in gazebo etc.)</description>
+  <maintainer email="dinko.osmankovic@etf.unsa.ba">Dinko Osmankovic</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/hector_quadrotor_model</url>
+  <url type="bugtracker">https://github.com/dinkoosmankovic/hector_quadrotor/issues</url>
+
+  <author email="dinko.osmankovic@etf.unsa.ba">Dinko Osmankovic</author>
+  <author email="esefer2@etf.unsa.ba">Enela Sefer</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>hector_octorotor_gazebo</run_depend>
+  <run_depend>hector_gazebo_worlds</run_depend>
+  <run_depend>hector_mapping</run_depend>
+  <run_depend>hector_geotiff</run_depend>
+  <run_depend>hector_trajectory_server</run_depend>
+
+  <!-- Dependencies needed only for running tests. -->
+
+</package>
