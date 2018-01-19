@@ -6,8 +6,8 @@
   <include file="$(find hector_gazebo_worlds)/launch/willow_garage.launch"/>
 
   <!-- Spawn simulated quadrotor uav -->
-  <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch" >
-    <arg name="model" value="$(find hector_quadrotor_description)/urdf/quadrotor_hokuyo_utm30lx.gazebo.xacro"/>
+  <include file="$(find hector_octorotor_gazebo)/launch/spawn_octorotor.launch" >
+    <arg name="model" value="$(find hector_octorotor_description)/urdf/octorotor_hokuyo_utm30lx.gazebo.xacro"/>
     <arg name="controllers" value="
         controller/attitude
         controller/velocity
