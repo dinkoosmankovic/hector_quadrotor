@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<robot name="octorotor" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find hector_octorotor_description)/urdf/octorotor_hokuyo_utm30lx.urdf.xacro" />
+    <xacro:include filename="$(find hector_octorotor_gazebo)/urdf/octorotor_plugins.gazebo.xacro" />
+</robot>
+
