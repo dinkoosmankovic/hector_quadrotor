@@ -3,37 +3,47 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:include filename="$(find hector_sensors_description)/urdf/sonar_sensor.urdf.xacro" />
-  <xacro:property name="pi" value="3.1415926535897931" />
+  <!-- <xacro:property name="pi" value="3.1415926535897931" /> -->
+  
+  <xacro:macro name="octorotor_dummy">
+    <link name="dummy_link">
+  		<origin xyz="0 0 0" rpy="0 0 0" />
+  	</link>
+  	<joint name="$dummy_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="dummy_link"/>
+      <child link="base_link"/>
+    </joint>
+  </xacro:macro>
 
   <!-- Main quadrotor link -->
   <xacro:macro name="octorotor_base_macro">
     <link name="base_link">
-      <inertial>
-        <mass value="1.477" />
-        <origin xyz="0 0 0" />
-        <inertia ixx="0.01152" ixy="0.0" ixz="0.0" iyy="0.01152" iyz="0.0" izz="0.0218" />
-      </inertial>
+		  <inertial>
+		    <mass value="1.477" />
+		    <origin xyz="0 0 0" />
+		    <inertia ixx="0.01152" ixy="0.0" ixz="0.0" iyy="0.01152" iyz="0.0" izz="0.0218" />
+		  </inertial>
 
-      <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh filename="package://hector_octorotor_description/meshes/octorotor/octorotor_base.dae"/>
-        </geometry>
-      </visual>
+		  <visual>
+		    <origin xyz="0 0 0" rpy="0 0 0" />
+		    <geometry>
+		      <mesh filename="package://hector_octorotor_description/meshes/octorotor/octorotor_base.dae"/>
+		    </geometry>
+		  </visual>
 
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh filename="package://hector_octorotor_description/meshes/octorotor/quadrotor_base.stl"/>
-          <!-- TODO: THIS SHOULD BE CHANGED AS WELL -->
-        </geometry>
-      </collision>
-    </link>
+		  <collision>
+		    <origin xyz="0 0 0" rpy="0 0 0" />
+		    <geometry>
+		      <mesh filename="package://hector_octorotor_description/meshes/octorotor/quadrotor_base.stl"/>
+		      <!-- TODO: THIS SHOULD BE CHANGED AS WELL -->
+		    </geometry>
+		  </collision>
+	</link>
 
     <!-- Sonar height sensor -->
     <xacro:sonar_sensor name="sonar" parent="base_link" ros_topic="sonar_height" update_rate="10" min_range="0.03" max_range="3.0" field_of_view="${40*pi/180}" ray_count="3">
       <origin xyz="-0.16 0.0 -0.012" rpy="0 ${90*pi/180} 0"/>
     </xacro:sonar_sensor>
-
   </xacro:macro>
 </robot>
