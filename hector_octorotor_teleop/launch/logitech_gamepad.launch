@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="joy_dev" default="/dev/input/js1" />
+  <arg name="joy_dev" default="/dev/input/js0" />
   <arg name="control_mode" default="velocity"/>
 
   <node name="joy" pkg="joy" type="joy_node" output="screen" >
@@ -21,9 +21,9 @@
       thrust_axis: 2
       yaw_axis: 1
 
-      slow_button: 0
-      go_button: 3
-      stop_button: 4
+      slow_button: 6
+      go_button: 8
+      stop_button: 2
     </rosparam>
 
   </node>
